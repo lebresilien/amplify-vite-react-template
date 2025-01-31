@@ -1,10 +1,18 @@
-import { useEffect, useState } from "react";
+/* import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
+import { generateClient } from "aws-amplify/data"; */
+import logo from "./assets/react.svg";
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card 
+} from "@aws-amplify/ui-react";
 
-const client = generateClient<Schema>();
-
-function App() {
+/* function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
   useEffect(() => {
@@ -35,6 +43,22 @@ function App() {
       </div>
     </main>
   );
-}
+} */
 
-export default App;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  // eslint-disable-next-line react-refresh/only-export-components
+  function App({ signOut }) {
+    return (
+      <View className="App">
+        <Card>
+          <Image src={logo} className="App-logo" alt="logo" />
+          <Heading level={1}>We now have Auth!</Heading>
+        </Card>
+        <Button onClick={signOut}>Sign Out</Button>
+      </View>
+    );
+  }
+  
+  // eslint-disable-next-line react-refresh/only-export-components
+  export default withAuthenticator(App);
